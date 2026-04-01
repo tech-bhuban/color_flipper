@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Flipper</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            transition: background 0.3s ease;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .color-code {
+            font-size: 24px;
+            font-family: monospace;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Color Flipper</h1>
+        <div class="color-code" id="colorCode">#ffffff</div>
+        <button onclick="changeColor('hex')">Random HEX</button>
+        <button onclick="changeColor('rgb')">Random RGB</button>
+    </div>
+
+    <script>
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        function changeColor(type) {
+            if(type === 'hex') {
+                let hex = '#';
+                let letters = '0123456789ABCDEF';
+                for(let i = 0; i < 6; i++) {
+                    hex += letters[getRandomNumber(0, 15)];
+                }
+                document.body.style.backgroundColor = hex;
+                document.getElementById('colorCode').innerHTML = hex;
+            } else if(type === 'rgb') {
+                let r = getRandomNumber(0, 255);
+                let g = getRandomNumber(0, 255);
+                let b = getRandomNumber(0, 255);
+                let rgb = `rgb(${r}, ${g}, ${b})`;
+                document.body.style.backgroundColor = rgb;
+                document.getElementById('colorCode').innerHTML = rgb;
+            }
+        }
+    </script>
+</body>
+</html>
